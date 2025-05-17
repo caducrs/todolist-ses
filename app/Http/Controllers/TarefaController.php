@@ -12,13 +12,13 @@ class TarefaController extends Controller
     public function index()
     {
         $tarefas = auth()->user()->tarefas;
-        return view('tarefas.index', compact('tarefas'));
+        return view('pages.tarefas', compact('tarefas')); // Corrigido aqui
     }
 
-    // Mostra o formulário para criar nova tarefa
+   
     public function create()
     {
-        return view('tarefas.create');
+        return view('pages.cadTarefas');
     }
 
     // Salva a tarefa no banco e redireciona para lista
@@ -30,6 +30,10 @@ class TarefaController extends Controller
             'deadline' => 'nullable|date',
             'status' => 'nullable|in:pendente,em andamento,não feita',
         ]);
+
+    //Previnir XSS
+    $validated['titulo'] = strip_tags($validated['titulo']);
+    $validated['descricao'] = strip_tags($validated['descricao']);
 
         Tarefa::create(
             array_merge($validated, [
@@ -43,21 +47,21 @@ class TarefaController extends Controller
         return redirect()->route('tarefas.index')->with('success', 'Tarefa criada com sucesso!');
     }
 
-    // Mostra detalhes de uma tarefa específica
+   
     public function show(Tarefa $tarefa)
     {
         $this->authorize('view', $tarefa);
-        return view('tarefas.show', compact('tarefa'));
+        return view('pages.tarefaShow', compact('tarefa')); 
     }
 
-    // Mostra o formulário para editar
+
     public function edit(Tarefa $tarefa)
     {
         $this->authorize('update', $tarefa);
-        return view('tarefas.edit', compact('tarefa'));
+        return view('pages.tarefaEdit', compact('tarefa'));
     }
 
-    // Atualiza a tarefa no banco e redireciona
+  
     public function update(Request $request, Tarefa $tarefa)
     {
         $this->authorize('update', $tarefa);
