@@ -16,13 +16,13 @@ class CreateTarefasTable extends Migration
             $table->timestamp('started_at')->nullable();
 //Periodo que acaba             
             $table->timestamp('deadline')->nullable();
-
+//Status das Tarefas
             $table->enum('status', ['pendente', 'em andamento', 'não feita'])->default('pendente');
-
+//Descrições
             $table->text('descricao');
-
+//Titulo
             $table->string('titulo');
-
+//timestamp para referencia
             $table->timestamps();
         });
     }
