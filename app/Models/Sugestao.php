@@ -13,8 +13,14 @@ class Sugestao extends Model
         'titulo',
         'descricao',
         'ativa',
+        'autor_id',  
     ];
 
+
+    public function autor()
+    {
+        return $this->belongsTo(User::class, 'autor_id');
+    }
 
     public function isAtiva()
     {

@@ -2,7 +2,7 @@
 
 @section('conteudo')
     <style>
-        /* Container */
+     
         .form-container {
             max-width: 480px;
             margin: 2rem auto;
@@ -14,7 +14,7 @@
             animation: fadeInUp 0.8s ease forwards;
         }
 
-        /* Title */
+   
         .form-container h1 {
             font-size: 2.25rem;
             font-weight: 700;
@@ -43,7 +43,7 @@
             margin: 0;
         }
 
-        /* Form inputs & textarea */
+      
         label {
             display: block;
             font-weight: 600;
@@ -79,7 +79,7 @@
             animation: pulseBorder 1.2s infinite ease-in-out;
         }
 
-        /* Button */
+    
         button[type="submit"] {
             display: block;
             width: 100%;
@@ -109,8 +109,6 @@
             box-shadow: 0 6px 12px rgba(13, 71, 161, 0.8);
         }
 
-
-        /* Animations */
         @keyframes fadeInUp {
             0% {
                 opacity: 0;
@@ -155,9 +153,9 @@
     </style>
 
     <div class="form-container">
-        <h1>Cadastrar Nova Tarefa</h1>
+        <h1>{{ isset($tarefa) ? 'Editar Tarefa' : 'Cadastrar Nova Tarefa' }}</h1>
 
-        {{-- Exibir erros de validação --}}
+   
         @if ($errors->any())
             <div class="error-box" role="alert" aria-live="assertive">
                 <ul>
@@ -168,39 +166,48 @@
             </div>
         @endif
 
-        {{-- Formulário --}}
-        <form action="{{ route('tarefas.store') }}" method="POST" class="space-y-6" novalidate>
+
+        <form action="{{ isset($tarefa) ? route('tarefas.update', $tarefa->id) : route('tarefas.store') }}" method="POST"
+            class="space-y-6" novalidate>
             @csrf
+            @if (isset($tarefa))
+                @method('PUT')
+            @endif
 
             <div>
                 <label for="titulo">Título</label>
-                <input type="text" name="titulo" id="titulo" value="{{ old('titulo') }}" required
-                    placeholder="Digite o título da tarefa" autocomplete="off" aria-required="true" />
+                <input type="text" name="titulo" id="titulo" value="{{ old('titulo', $tarefa->titulo ?? '') }}"
+                    required placeholder="Digite o título da tarefa" autocomplete="off" aria-required="true" />
             </div>
 
             <div>
                 <label for="descricao">Descrição</label>
                 <textarea name="descricao" id="descricao" rows="4" required placeholder="Descreva sua tarefa"
-                    aria-required="true">{{ old('descricao') }}</textarea>
+                    aria-required="true">{{ old('descricao', $tarefa->descricao ?? '') }}</textarea>
             </div>
 
             <div>
                 <label for="deadline">Prazo (opcional)</label>
-                <input type="datetime-local" name="deadline" id="deadline" value="{{ old('deadline') }}"
+                <input type="datetime-local" name="deadline" id="deadline"
+                    value="{{ old('deadline', isset($tarefa) && $tarefa->deadline ? $tarefa->deadline->format('Y-m-d\TH:i') : '') }}"
                     aria-required="false" />
             </div>
 
             <div>
                 <label for="status">Status</label>
                 <select name="status" id="status" aria-required="true">
-                    <option value="pendente" {{ old('status') == 'pendente' ? 'selected' : '' }}>Pendente</option>
-                    <option value="em andamento" {{ old('status') == 'em andamento' ? 'selected' : '' }}>Em andamento
-                    </option>
-                    <option value="não feita" {{ old('status') == 'não feita' ? 'selected' : '' }}>Não feita</option>
+                    <option value="pendente" {{ old('status', $tarefa->status ?? '') == 'pendente' ? 'selected' : '' }}>
+                        Pendente</option>
+                    <option value="em andamento"
+                        {{ old('status', $tarefa->status ?? '') == 'em andamento' ? 'selected' : '' }}>Em andamento</option>
+                    <option value="não feita" {{ old('status', $tarefa->status ?? '') == 'não feita' ? 'selected' : '' }}>
+                        Não feita</option>
                 </select>
             </div>
 
-            <button type="submit" aria-label="Cadastrar tarefa">Cadastrar Tarefa</button>
+            <button type="submit" aria-label="{{ isset($tarefa) ? 'Atualizar tarefa' : 'Cadastrar tarefa' }}">
+                {{ isset($tarefa) ? 'Atualizar Tarefa' : 'Cadastrar Tarefa' }}
+            </button>
         </form>
     </div>
 @endsection

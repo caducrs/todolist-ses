@@ -15,7 +15,6 @@ class TarefaController extends Controller
         return view('pages.tarefas', compact('tarefas')); // Corrigido aqui
     }
 
-   
     public function create()
     {
         return view('pages.cadTarefas');
@@ -31,9 +30,9 @@ class TarefaController extends Controller
             'status' => 'nullable|in:pendente,em andamento,não feita',
         ]);
 
-    //Previnir XSS
-    $validated['titulo'] = strip_tags($validated['titulo']);
-    $validated['descricao'] = strip_tags($validated['descricao']);
+        //Previnir XSS
+        $validated['titulo'] = strip_tags($validated['titulo']);
+        $validated['descricao'] = strip_tags($validated['descricao']);
 
         Tarefa::create(
             array_merge($validated, [
@@ -47,21 +46,20 @@ class TarefaController extends Controller
         return redirect()->route('tarefas.index')->with('success', 'Tarefa criada com sucesso!');
     }
 
-   
     public function show(Tarefa $tarefa)
     {
         $this->authorize('view', $tarefa);
-        return view('pages.tarefaShow', compact('tarefa')); 
+        return view('pages.tarefaShow', compact('tarefa'));
     }
-
 
     public function edit(Tarefa $tarefa)
     {
         $this->authorize('update', $tarefa);
-        return view('pages.tarefaEdit', compact('tarefa'));
-    }
 
   
+        return view('pages.cadTarefas', compact('tarefa'));
+    }
+
     public function update(Request $request, Tarefa $tarefa)
     {
         $this->authorize('update', $tarefa);

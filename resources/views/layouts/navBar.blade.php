@@ -25,7 +25,7 @@
         visibility: hidden;
         pointer-events: none;
         transform-origin: top center;
-          overflow: hidden;
+        overflow: hidden;
     }
 
     .dropdown-menu.show {
@@ -43,16 +43,13 @@
         color: white;
         transform: scale(1.05);
         z-index: 10;
-         box-sizing: border-box;
+        box-sizing: border-box;
     }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-            <i class="fas fa-tasks me-2"></i>
-            Case Laravel
-        </a>
+
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Alternar navegação">
@@ -101,6 +98,13 @@
                                     <i class="fas fa-clipboard-list me-2"></i> Minhas Tarefas
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('sugestoes.create') }}" class="dropdown-item d-flex align-items-center">
+                                    <i class="fas fa-lightbulb me-2"></i> Adicionar Sugestão
+                                </a>
+                            </li>
+
+
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

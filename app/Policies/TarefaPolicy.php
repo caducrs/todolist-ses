@@ -17,12 +17,16 @@ class TarefaPolicy
 
     public function view(User $user, Tarefa $tarefa)
     {
-        return $user->id === $tarefa->autor_id;
+        return $user->id == $tarefa->autor_id;
     }
 
     public function create(User $user)
     {
         return true;
+    }
+    public function update(User $user, Tarefa $tarefa)
+    {
+        return $user->id == $tarefa->autor_id;
     }
 
     public function delete(User $user, Tarefa $tarefa)
