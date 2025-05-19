@@ -16,7 +16,7 @@ A aplicação permite que usuários se cadastrem, façam login e realizem opera�
 - **Composer**
 - **Blade (Laravel)**
 - **Bootstrap 5**
-- **MySQL**
+- **SQLITE**
 - **Laravel Breeze**
 
 ---
@@ -70,7 +70,7 @@ Principais dependências listadas no `composer.json`:
 
 - PHP >= 8.3
 - Composer
-- MySQL
+- SQLITE
 - Node.js e NPM (opcional para frontend)
 
 ### Instalação
