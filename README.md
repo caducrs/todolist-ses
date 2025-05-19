@@ -21,7 +21,7 @@ A aplicação permite que usuários se cadastrem, façam login e realizem opera�
 
 ---
 
-## 📦 Dependênci3as
+## 📦 Dependências
 
 Principais dependências listadas no `composer.json`:
 
