@@ -17,11 +17,11 @@ A aplicação permite que usuários se cadastrem, façam login e realizem opera�
 - **Blade (Laravel)**
 - **Bootstrap 5**
 - **SQLITE**
-- **Laravel Breeze**
+- **Laravel Jetstream**
 
 ---
 
-## 📦 Dependências
+## 📦 Dependênci3as
 
 Principais dependências listadas no `composer.json`:
 
@@ -97,4 +97,3 @@ php artisan migrate
 
 # Iniciar o servidor local
 php artisan serve
-
