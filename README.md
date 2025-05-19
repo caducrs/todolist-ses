@@ -90,6 +90,7 @@ cp .env.example .env
 php artisan key:generate
 
 # Configurar as credenciais do banco de dados no .env
+baixar extensão Sqlite
 
 # Rodar as migrations
 php artisan migrate
