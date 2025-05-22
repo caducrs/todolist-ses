@@ -12,7 +12,7 @@ A aplicação permite que usuários se cadastrem, façam login e realizem opera�
 ## 🚀 Tecnologias Utilizadas
 
 - **PHP 8.3+**
-- **Laravel 12**
+- **Laravel 9**
 - **Composer**
 - **Blade (Laravel)**
 - **Bootstrap 5**
