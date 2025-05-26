@@ -3,7 +3,7 @@
 
 # ✅ ToDoList SES
 
-Aplicação web de **gestão de tarefas** desenvolvida em **Laravel 12** como parte do desafio técnico para vaga de estágio no **SES-MT**.
+Aplicação web de **gestão de tarefas** desenvolvida em **Laravel** como parte do desafio técnico para vaga de estágio no **SES-MT**.
 
 A aplicação permite que usuários se cadastrem, façam login e realizem operações CRUD (criar, visualizar, editar e excluir) em tarefas por meio de uma interface web simples e responsiva.
 
